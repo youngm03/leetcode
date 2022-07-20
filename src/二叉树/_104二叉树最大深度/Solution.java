@@ -16,16 +16,33 @@ public class Solution {
         return maxDepth;
     }
 
+    /**
+     * 对于二叉树的遍历形式只有递归
+     * 对于二叉树题目的思考过程：
+     * 1.是否可以通过遍历一遍二叉树得到答案？如果可以，用一个traverse函数（遍历函数）配合外部变量来解决。
+     * 2.是否能够通过分解子问题，通过子问题的解得到原问题的解？如果可以则定义一个递归函数，充分利用这个函数的返回值来解决。
+     * 以上也分别对应了回溯算法和动态规划的解题思路，
+     * 回溯算法就是通过遍历决策树得到问题的解，动态规划通过分解子问题+备忘录得到问题的解
+     *
+     * 注意：无论使用哪种解题方式，都需要考虑二叉树的每一个节点需要做什么，需要在什么时候做（前中后）
+     * @param root
+     */
     void traverse(TreeNode root) {
         if (root == null) {
             return;
         }
+        /**
+         * 节点前序位置：刚刚进入一个节点的时候，所以level+1
+         */
         level++;
         if (root.left == null && root.right == null) {
             maxDepth = Math.max(maxDepth, level);
         }
         traverse(root.left);
         traverse(root.right);
+        /**
+         * 节点后续位置：将要离开一个节点的时候，所以level-1
+         */
         level--;
     }
 }
