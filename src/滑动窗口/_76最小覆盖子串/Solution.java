@@ -31,6 +31,7 @@ public class Solution {
                 }
             }
             while (valid == need.size()) {
+//                更新最小长度
                 if (right - left < len) {
                     start = left;
                     len = right - left;

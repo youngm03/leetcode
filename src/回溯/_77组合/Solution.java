@@ -25,12 +25,12 @@ public class Solution {
     private void backTrack(int n, int k, int index) {
         if (track.size() == k) {
             result.add(new ArrayList<>(track));
+            return;
         }
         for (int i = index; i <= n; i++) {
             track.add(i);
             backTrack(n, k, i + 1);
             track.removeLast();
-
         }
     }
 }
