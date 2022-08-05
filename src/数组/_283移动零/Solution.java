@@ -9,16 +9,33 @@ package 数组._283移动零;
  */
 public class Solution {
     public void moveZeroes(int[] nums) {
-        int fast = 0, slow = 0;
-        while (fast < nums.length) {
-            if (nums[fast] != 0) {
-                nums[slow] = nums[fast];
-                slow++;
+        int left = 0, right = 0;
+        while (right < nums.length) {
+            if (nums[right] != 0) {
+                nums[left] = nums[right];
+                int index = left;
+                for (int j = index; j >= 1; j--) {
+                    if (nums[j] > nums[j - 1]) {
+                        break;
+                    }
+                    int temp = nums[j];
+                    nums[j] = nums[j - 1];
+                    nums[j - 1] = temp;
+                }
+                left++;
             }
-            fast++;
+            right++;
         }
-        for (int i = slow; i < nums.length; i++) {
+        for (int i = left; i < nums.length; i++) {
             nums[i] = 0;
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {6, 8, 3, 2, 0, 4, 0, 1};
+        new Solution().moveZeroes(nums);
+        for (int i = 0; i < nums.length; i++) {
+            System.out.print(nums[i] + " ");
         }
     }
 }
