@@ -26,14 +26,16 @@ public class Soluiton {
      * 迭代
      */
     public ListNode reverseList(ListNode head) {
+
         ListNode pre = null, curr = head, next = head;
         while (curr != null) {
             next = curr.next;
+            curr.next = pre;
             pre = curr;
-            curr.next = next;
-            curr = curr.next;
+            curr = next;
         }
         return pre;
+
     }
 
 }
