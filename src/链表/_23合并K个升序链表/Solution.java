@@ -13,25 +13,24 @@ import java.util.PriorityQueue;
 public class Solution {
 
     public ListNode mergeKLists(ListNode[] lists) {
-        if (lists.length == 0) return null;
-
+        if (lists.length == 0) {
+            return null;
+        }
         ListNode dummy = new ListNode(-1);
-        ListNode head = dummy;
-        PriorityQueue<ListNode> queue = new PriorityQueue<>(lists.length, (a, b) -> {
-            return a.val - b.val;
-        });
+        ListNode p = dummy;
+        PriorityQueue<ListNode> queue = new PriorityQueue<>(lists.length, (a, b) -> a.val - b.val);
         for (int i = 0; i < lists.length; i++) {
             if (lists[i] != null) {
                 queue.add(lists[i]);
             }
         }
         while (!queue.isEmpty()) {
-            ListNode poll = queue.poll();
-            head.next = poll;
-            if (poll.next != null) {
-                queue.add(poll.next);
+            ListNode node = queue.poll();
+            p.next = node;
+            p = p.next;
+            if (node.next != null) {
+                queue.add(node.next);
             }
-            head = head.next;
         }
         return dummy.next;
     }

@@ -9,20 +9,21 @@ package 链表._160相交链表;
  */
 public class Solution {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-        ListNode nodeA = headA;
-        ListNode nodeB = headB;
-        while (nodeA != nodeB) {
-            if (nodeA == null) {
-                nodeA = headB;
+        ListNode p1 = headA, p2 = headB;
+        while (p1 != null && p2 != null) {
+            if (p1.next == null) {
+                p1 = headB;
             } else {
-                nodeA = nodeA.next;
+                p1 = p1.next;
             }
-            if (nodeB == null) {
-                nodeB = headA;
-            } else {
-                nodeB = nodeB.next;
+            if (p2.next == null) {
+                p2 = headA;
+                p2 = p2.next;
+            }
+            if (p1 == p2) {
+                return p1;
             }
         }
-        return nodeA;
+        return null;
     }
 }

@@ -8,23 +8,22 @@ package 链表._142环形链表II;
  * @date 2022/7/25 19:57
  */
 public class Solution {
+
     public ListNode detectCycle(ListNode head) {
+        if(head == null || head.next == null) return null;
         ListNode fast = head, slow = head;
         while (fast != null && fast.next != null) {
             fast = fast.next.next;
             slow = slow.next;
             if (fast == slow) {
-                break;
+                slow = head;
+                while (slow != fast) {
+                    slow = slow.next;
+                    fast = fast.next;
+                }
+                return fast;
             }
         }
-        if (fast == null || fast.next == null) {
-            return null;
-        }
-        slow = head;
-        while (slow != fast) {
-            fast = fast.next;
-            slow = slow.next;
-        }
-        return slow;
+        return null;
     }
 }

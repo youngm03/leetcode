@@ -10,9 +10,12 @@ package 链表._86分割链表;
 public class Solution {
 
     public ListNode partition(ListNode head, int x) {
+        if (head == null || head.next == null) {
+            return head;
+        }
         ListNode dummy1 = new ListNode(-1);
         ListNode dummy2 = new ListNode(-1);
-        ListNode p = head, p1 = dummy1, p2 = dummy2;
+        ListNode p = head,p1 = dummy1, p2 = dummy2;
         while (p != null) {
             if (p.val < x) {
                 p1.next = p;
@@ -21,7 +24,6 @@ public class Solution {
                 p2.next = p;
                 p2 = p2.next;
             }
-//            断开原链表结点的next指针
             ListNode next = p.next;
             p.next = null;
             p = next;

@@ -10,8 +10,20 @@ package 链表._206反转链表;
 public class Soluiton {
 
     /**
-     * 递归
+     * 迭代
      */
+    public ListNode reverseList(ListNode head) {
+        ListNode pre = null, curr = head, next = head;
+        while (curr != null) {
+            next = curr.next;
+            curr.next = pre;
+            pre = curr;
+            curr = next;
+        }
+        return pre;
+    }
+
+//    递归
 //    public ListNode reverseList(ListNode head) {
 //        if (head == null || head.next == null) {
 //            return head;
@@ -21,21 +33,5 @@ public class Soluiton {
 //        head.next = null;
 //        return listNode;
 //    }
-
-    /**
-     * 迭代
-     */
-    public ListNode reverseList(ListNode head) {
-
-        ListNode pre = null, curr = head, next = head;
-        while (curr != null) {
-            next = curr.next;
-            curr.next = pre;
-            pre = curr;
-            curr = next;
-        }
-        return pre;
-
-    }
 
 }
