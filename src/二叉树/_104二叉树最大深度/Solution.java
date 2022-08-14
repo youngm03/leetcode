@@ -31,18 +31,10 @@ public class Solution {
         if (root == null) {
             return;
         }
-        /**
-         * 节点前序位置：刚刚进入一个节点的时候，所以level+1
-         */
         level++;
-        if (root.left == null && root.right == null) {
-            maxDepth = Math.max(maxDepth, level);
-        }
+        maxDepth = Math.max(maxDepth, level);
         traverse(root.left);
         traverse(root.right);
-        /**
-         * 节点后续位置：将要离开一个节点的时候，所以level-1
-         */
         level--;
     }
 }

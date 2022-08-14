@@ -10,17 +10,19 @@ package 链表._83删除排序链表中的重复元素;
 public class Solution {
 
     public ListNode deleteDuplicates(ListNode head) {
-        if (head == null || head.next == null) return head;
-        ListNode fast = head, slow = head;
-        while (fast != null) {
-            if (fast.val != slow.val) {
-                slow.next = fast;
-                slow = slow.next;
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        ListNode left = dummy, right = dummy;
+        while (right != null) {
+            if (left.val == right.val) {
+                right = right.next;
+            } else {
+                left.next = right;
+                left = right;
+                right = right.next;
             }
-            fast = fast.next;
         }
-        slow.next = null;
-        return head;
+        return dummy.next;
     }
 
 }

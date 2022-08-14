@@ -9,15 +9,16 @@ package 数组._27移除数组;
  */
 public class Solution {
     public int removeElement(int[] nums, int val) {
-        if (nums.length == 0) return 0;
-        int fast = 0, slow = 0;
-        while (fast < nums.length) {
-            if (nums[fast] != val) {
-                nums[slow] = nums[fast];
-                slow++;
+        int left = 0, right = 0;
+        while (right < nums.length) {
+            if (nums[right] == val) {
+                right++;
+            } else {
+                nums[left] = nums[right];
+                left++;
+                right++;
             }
-            fast++;
         }
-        return slow++;
+        return left;
     }
 }
