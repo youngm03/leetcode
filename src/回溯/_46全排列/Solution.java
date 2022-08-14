@@ -17,14 +17,15 @@ import java.util.List;
 public class Solution {
 
     List<List<Integer>> result = new ArrayList<>();
+    LinkedList<Integer> track = new LinkedList<>();
+    boolean[] used;
     public List<List<Integer>> permute(int[] nums) {
-        LinkedList<Integer> track = new LinkedList<>();
-        boolean[] used = new boolean[nums.length];
-        backTrack(nums, track, used);
+        used = new boolean[nums.length];
+        backTrack(nums);
         return result;
     }
 
-    private void backTrack(int[] nums, LinkedList<Integer> track, boolean[] used) {
+    private void backTrack(int[] nums) {
         if (track.size() == nums.length) {
             result.add(new ArrayList<>(track));
         }
@@ -34,7 +35,7 @@ public class Solution {
             }
             track.add(nums[i]);
             used[i] = true;
-            backTrack(nums, track, used);
+            backTrack(nums);
             track.removeLast();
             used[i] = false;
         }

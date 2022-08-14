@@ -12,21 +12,18 @@ import java.util.List;
  * @date 2022/7/29 22:26
  */
 public class Solution {
-
-
     List<List<Integer>> result = new ArrayList<>();
-
+    LinkedList<Integer> track = new LinkedList<>();
     public List<List<Integer>> subsets(int[] nums) {
-        LinkedList<Integer> track = new LinkedList<>();
-        backTrack(nums, track, 0);
+        backTrack(nums, 0);
         return result;
     }
 
-    private void backTrack(int[] nums, LinkedList<Integer> track, int index) {
-        result.add(new ArrayList<>(track));
+    private void backTrack(int[] nums, int index) {
+        result.add(new LinkedList(track));
         for (int i = index; i < nums.length; i++) {
             track.add(nums[i]);
-            backTrack(nums, track, i + 1);
+            backTrack(nums, i + 1);
             track.removeLast();
         }
     }

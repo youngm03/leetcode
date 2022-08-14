@@ -13,30 +13,28 @@ import java.util.List;
  * @date 2022/7/30 14:48
  */
 public class Solution {
-
+    int sum = 0;
     List<List<Integer>> result = new ArrayList<>();
     LinkedList<Integer> track = new LinkedList<>();
-
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
-        backTrack(candidates, target, 0, 0);
+        backTrack(candidates, target, 0);
         return result;
     }
 
-    private void backTrack(int[] nums, int target, int sum, int index) {
+    private void backTrack(int[] nums, int target, int index) {
         if (sum == target) {
-            result.add(new ArrayList<>(track));
+            result.add(new LinkedList<>(track));
+            return;
         }
         if (sum > target) {
             return;
         }
         for (int i = index; i < nums.length; i++) {
-            sum += nums[i];
             track.add(nums[i]);
-            backTrack(nums, target, sum, i);
+            sum += nums[i];
+            backTrack(nums, target, i);
             track.removeLast();
             sum -= nums[i];
         }
-
     }
-
 }
