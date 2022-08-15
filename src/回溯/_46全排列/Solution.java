@@ -27,7 +27,8 @@ public class Solution {
 
     private void backTrack(int[] nums) {
         if (track.size() == nums.length) {
-            result.add(new ArrayList<>(track));
+            result.add(new LinkedList<>(track));
+            return;
         }
         for (int i = 0; i < nums.length; i++) {
             if (used[i]) {
@@ -40,5 +41,4 @@ public class Solution {
             used[i] = false;
         }
     }
-
 }

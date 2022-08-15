@@ -12,6 +12,7 @@ import java.util.List;
  * @date 2022/7/29 22:25
  */
 public class Solution {
+
     List<List<Integer>> result = new ArrayList<>();
     LinkedList<Integer> track = new LinkedList<>();
     public List<List<Integer>> combine(int n, int k) {
@@ -24,18 +25,10 @@ public class Solution {
             result.add(new LinkedList<>(track));
             return;
         }
-        for (int i = index; i < n; i++) {
+        for (int i = index; i <= n; i++) {
             track.add(i);
-            backTrack(n, k, index + 1);
+            backTrack(n, k, i + 1);
             track.removeLast();
-        }
-    }
-
-    public static void main(String[] args) throws InstantiationException, IllegalAccessException {
-        Solution solution = Solution.class.newInstance();
-        List<List<Integer>> combine = solution.combine(4, 2);
-        for (List<Integer> integers : combine) {
-            System.out.println("integers = " + integers);
         }
     }
 }

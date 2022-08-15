@@ -16,7 +16,6 @@ public class Solution {
 
     List<List<Integer>> result = new ArrayList<>();
     LinkedList<Integer> track = new LinkedList<>();
-
     public List<List<Integer>> subsetsWithDup(int[] nums) {
         Arrays.sort(nums);
         backTrack(nums, 0);
@@ -24,7 +23,7 @@ public class Solution {
     }
 
     private void backTrack(int[] nums, int index) {
-        result.add(new ArrayList<>(track));
+        result.add(new LinkedList<>(track));
         for (int i = index; i < nums.length; i++) {
             if (i > index && nums[i] == nums[i - 1]) {
                 continue;

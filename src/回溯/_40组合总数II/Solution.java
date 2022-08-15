@@ -22,6 +22,7 @@ public class Solution {
         backTrack(candidates, target, 0);
         return result;
     }
+
     private void backTrack(int[] nums, int target, int index) {
         if (sum == target) {
             result.add(new LinkedList<>(track));
@@ -34,12 +35,11 @@ public class Solution {
             if (i > index && nums[i] == nums[i - 1]) {
                 continue;
             }
-            sum += nums[i];
             track.add(nums[i]);
-            backTrack(nums, target, i + 1 );
-            sum -= nums[i];
+            sum += nums[i];
+            backTrack(nums, target, i + 1);
             track.removeLast();
+            sum -= nums[i];
         }
     }
-
 }

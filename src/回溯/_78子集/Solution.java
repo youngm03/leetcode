@@ -20,7 +20,7 @@ public class Solution {
     }
 
     private void backTrack(int[] nums, int index) {
-        result.add(new LinkedList(track));
+        result.add(new LinkedList<>(track));
         for (int i = index; i < nums.length; i++) {
             track.add(nums[i]);
             backTrack(nums, i + 1);

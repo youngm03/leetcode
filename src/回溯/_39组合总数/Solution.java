@@ -13,9 +13,9 @@ import java.util.List;
  * @date 2022/7/30 14:48
  */
 public class Solution {
-    int sum = 0;
     List<List<Integer>> result = new ArrayList<>();
     LinkedList<Integer> track = new LinkedList<>();
+    int sum = 0;
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
         backTrack(candidates, target, 0);
         return result;
@@ -33,8 +33,8 @@ public class Solution {
             track.add(nums[i]);
             sum += nums[i];
             backTrack(nums, target, i);
-            track.removeLast();
             sum -= nums[i];
+            track.removeLast();
         }
     }
 }
